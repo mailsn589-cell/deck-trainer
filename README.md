@@ -10,8 +10,8 @@ A static flashcard trainer for your medical notes with a true card-by-card workf
 
 - `index.html` - page structure
 - `styles.css` - responsive UI styling
-- `deck_trainer.py` - browser-side study logic (PyScript)
-- `medical_decks.py` - medical deck data used by the UI
+- `deck_trainer.py` - browser-side study logic (PyScript) with embedded deck data for GitHub Pages reliability
+- `medical_decks.py` - shared deck data for Python-side tests/reference
 - `deck_logic.py` - helper logic + existing unit tests
 - `main.py` - local static server
 - `tests/test_deck_logic.py` - current unit tests
@@ -54,3 +54,9 @@ GitHub Pages and browser caching can delay updates. Do a hard refresh after push
 - macOS: `Cmd + Shift + R`
 
 Also check that your latest commit includes changes to `index.html`, `deck_trainer.py`, `styles.css`, and `medical_decks.py`.
+
+## PyScript import note
+
+GitHub Pages runs PyScript in the browser (Pyodide). Local Python module imports can fail there unless explicitly packaged for PyScript.
+To avoid `ModuleNotFoundError` in the browser, `deck_trainer.py` keeps runtime deck data embedded.
+

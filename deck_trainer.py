@@ -3,7 +3,52 @@ from __future__ import annotations
 import importlib
 import random
 
-from medical_decks import MEDICAL_DECKS
+MEDICAL_DECKS = {
+    "Abdomen and GI": [
+        {"front": "Hematemesis", "back": "Vomiting blood; if exposed to gastric acid it may look like coffee grounds."},
+        {"front": "Dysphagia", "back": "Difficulty swallowing."},
+        {"front": "Odynophagia", "back": "Painful swallowing."},
+        {"front": "Aerophagia", "back": "Excessive flatus from swallowed air."},
+        {"front": "Icterus (jaundice)", "back": "Associated with hepatitis, biliary cirrhosis, or gallstones."},
+        {"front": "Anorexia", "back": "Loss of appetite."},
+        {"front": "Melena", "back": "Dark, tarry stool from upper GI bleeding."},
+        {"front": "Hematochezia", "back": "Bright red blood, often from rectum, anus, or sigmoid."},
+        {"front": "Steatorrhea", "back": "Fatty diarrheal stool."},
+        {"front": "Pale or clay stool", "back": "May indicate impaired biliary production or flow."},
+        {"front": "Colorectal screening age", "back": "Routine screening is recommended around age 50, earlier if high risk."},
+        {"front": "Exercise and constipation", "back": "Sedentary lifestyle increases constipation risk; walking 30 minutes daily helps."},
+        {"front": "Diet advice for bowel health", "back": "Balanced high-fiber diet and about 8 to 10 glasses of water per day."},
+        {"front": "Probiotics", "back": "Promote beneficial microorganisms in the GI tract."},
+        {"front": "Meconium", "back": "First stool, usually passed in the first 24 to 48 hours."},
+        {"front": "Gastrocolic reflex", "back": "Peristalsis is stimulated after eating."},
+        {"front": "Umbilicus expected", "back": "Midline and usually inverted."},
+        {"front": "Umbilicus unexpected", "back": "Redness, swelling, discoloration, or lesions are abnormal."},
+        {"front": "Shape and contour expected", "back": "Flat, even, slightly convex, or rounded can be normal."},
+        {"front": "Shape unexpected", "back": "Marked distention or severe concavity is abnormal."},
+    ],
+    "Rectum and Genitourinary": [
+        {"front": "Kidney functions", "back": "Maintain fluid and electrolyte balance, support red blood cell production, and filter waste."},
+        {"front": "Ureters", "back": "Transport urine from kidneys to bladder."},
+        {"front": "Bladder role", "back": "Stores urine; urge to void commonly appears near 300 mL."},
+        {"front": "Urethra role", "back": "Passageway for urine; in males it also carries semen."},
+        {"front": "Urinary retention", "back": "Inability to empty the bladder."},
+        {"front": "Urinary hesitancy", "back": "Trouble starting urination."},
+        {"front": "Urinary urgency", "back": "Inability to wait to urinate."},
+        {"front": "Dribbling", "back": "Leakage before or after full urinary stream."},
+        {"front": "Nocturia", "back": "Urinating repeatedly during the night."},
+        {"front": "Stress incontinence", "back": "Leakage with coughing, sneezing, or exertion."},
+        {"front": "Goodell sign", "back": "Softening of the cervix around 4 to 6 weeks gestation."},
+        {"front": "Chadwick sign", "back": "Cyanotic vaginal mucosa and cervix around 6 to 8 weeks gestation."},
+        {"front": "Hegar sign", "back": "Softening of uterine isthmus around 4 to 6 weeks and into first trimester."},
+        {"front": "Cystocele", "back": "Bladder prolapse into vagina with pressure or stress incontinence."},
+        {"front": "Rectocele", "back": "Rectal prolapse into vagina with pressure and possible constipation."},
+        {"front": "Hydrocele", "back": "Fluid collection around testicle causing usually painless swelling."},
+        {"front": "Phimosis", "back": "Foreskin cannot retract over the glans."},
+        {"front": "Paraphimosis", "back": "Retracted foreskin trapped behind glans; this is a medical emergency."},
+        {"front": "Priapism", "back": "Painful prolonged erection unrelated to sexual arousal."},
+        {"front": "Cryptorchidism", "back": "Undescended testes."},
+    ],
+}
 
 _pyscript = None
 try:
