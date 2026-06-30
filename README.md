@@ -1,21 +1,21 @@
-# Deck Trainer (Python 3 + Web UI)
+# Medical Deck Trainer (Python 3 + Web UI)
 
-A flashcard-style trainer with two study modes using the medical content you provided.
+A static flashcard trainer for your medical notes with a true card-by-card workflow.
 
-- **Learn Mode**: read the prompt and reveal the answer.
-- **Practice Mode**: choose the correct answer from multiple options.
+- **Learn Mode**: one card at a time (question on front, answer on reveal).
+- **Practice Mode**: multiple-choice recall with score tracking.
 - **Deck Selector**: switch between `Abdomen and GI` and `Rectum and Genitourinary`.
-
-The interface is static and can be hosted with **GitHub Pages**.
 
 ## Project files
 
-- `index.html` - web interface entry point
-- `styles.css` - UI styles
-- `deck_trainer.py` - browser-side Python handlers and deck data (PyScript)
-- `deck_logic.py` - helper logic and unit-test target
-- `main.py` - local static server runner
-- `tests/test_deck_logic.py` - tiny test harness
+- `index.html` - page structure
+- `styles.css` - responsive UI styling
+- `deck_trainer.py` - browser-side study logic (PyScript)
+- `medical_decks.py` - medical deck data used by the UI
+- `deck_logic.py` - helper logic + existing unit tests
+- `main.py` - local static server
+- `tests/test_deck_logic.py` - current unit tests
+- `tests/test_medical_decks.py` - data integrity tests for medical decks
 
 ## Run locally
 
@@ -33,16 +33,24 @@ python -m unittest discover -s tests -p "test_*.py"
 
 ## Add more cards in future
 
-1. Open `deck_trainer.py`.
-2. Add a new deck inside `DECKS` (same `{"front": ..., "back": ...}` format).
-3. Save, commit, and push to GitHub.
-4. GitHub Pages updates automatically after deployment.
+1. Open `medical_decks.py`.
+2. Add cards under the target deck in this format:
+   - `{"front": "Question or term", "back": "Answer or definition"}`
+3. Save, commit, and push.
+4. Refresh GitHub Pages after deployment.
 
-## Host on GitHub Pages
+## Deploy to GitHub Pages
 
-1. Push this repository to GitHub.
+1. Push to your repository `main` branch.
 2. In repository settings, open **Pages**.
-3. Set source to branch `main` and folder `/ (root)`.
-4. Keep **Custom domain** empty unless you own a separate domain.
+3. Source: `Deploy from a branch`, branch `main`, folder `/ (root)`.
+4. Leave **Custom domain** empty unless you own a separate domain.
 
-Because the app is static, no backend hosting is needed.
+## If the live page still shows old cards
+
+GitHub Pages and browser caching can delay updates. Do a hard refresh after push:
+
+- Windows: `Ctrl + F5`
+- macOS: `Cmd + Shift + R`
+
+Also check that your latest commit includes changes to `index.html`, `deck_trainer.py`, `styles.css`, and `medical_decks.py`.

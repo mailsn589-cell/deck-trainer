@@ -3,47 +3,51 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deck Trainer</title>
+  <title>Medical Deck Trainer</title>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
   <script type="module" src="https://pyscript.net/releases/2024.6.1/core.js"></script>
 </head>
 <body>
   <main class="container">
-    <h1>Deck Trainer</h1>
-    <p class="lead">Study your provided notes as flashcards in Learn and Practice mode.</p>
+    <header class="page-header">
+      <h1>Medical Deck Trainer</h1>
+      <p class="lead">Study one card at a time, then validate recall in practice mode.</p>
+    </header>
 
-    <section class="panel">
-      <h2>Deck</h2>
-      <label for="deck-select">Choose a deck:</label>
-      <select id="deck-select"></select>
-      <p id="deck-status" class="footnote"></p>
+    <section class="panel deck-panel">
+      <h2>Deck Settings</h2>
+      <div class="deck-controls">
+        <label for="deck-select">Deck</label>
+        <select id="deck-select"></select>
+      </div>
+      <p id="deck-status" class="muted"></p>
     </section>
 
-    <section class="panel">
-      <h2>Learn Mode</h2>
-      <p id="learn-position"></p>
-      <div class="card" id="learn-card"></div>
+    <section class="panel learn-panel">
+      <div class="panel-head">
+        <h2>Learn Mode</h2>
+        <p id="learn-side" class="badge"></p>
+      </div>
+      <p id="learn-position" class="muted"></p>
+      <article id="learn-card" class="card" aria-live="polite"></article>
       <div class="buttons">
-        <button id="learn-prev">Previous</button>
-        <button id="learn-reveal">Reveal</button>
-        <button id="learn-next">Next</button>
+        <button id="learn-prev" class="secondary">Previous</button>
+        <button id="learn-reveal">Reveal Answer</button>
+        <button id="learn-next" class="secondary">Next</button>
       </div>
     </section>
 
-    <section class="panel">
+    <section class="panel practice-panel">
       <h2>Practice Mode</h2>
       <p id="practice-prompt"></p>
-      <p id="practice-progress"></p>
+      <p id="practice-progress" class="muted"></p>
       <div id="practice-options" class="option-grid"></div>
-      <p id="practice-result" class="result"></p>
-      <button id="practice-reset" class="secondary">Reset Practice</button>
+      <p id="practice-result" class="result" aria-live="polite"></p>
+      <button id="practice-reset" class="secondary">Restart Practice</button>
     </section>
-
-    <p class="footnote">Tip: use Learn mode first, then Practice mode for quick recall checks.</p>
   </main>
 
   <script type="py" src="deck_trainer.py" config='{"packages": []}'></script>
 </body>
 </html>
-
