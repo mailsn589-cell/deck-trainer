@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Deck Trainer</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.6.1/core.js"></script>
+</head>
+<body>
+  <main class="container">
+    <h1>Deck Trainer</h1>
+    <p class="lead">Learn a full deck with a simple flashcard-style interface.</p>
+
+    <section class="panel">
+      <h2>Learn Mode</h2>
+      <p id="learn-position"></p>
+      <div class="card" id="learn-card"></div>
+      <div class="buttons">
+        <button id="learn-prev">Previous</button>
+        <button id="learn-reveal">Reveal</button>
+        <button id="learn-next">Next</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Practice Mode</h2>
+      <p id="practice-prompt"></p>
+      <p id="practice-progress"></p>
+      <div class="guess-row">
+        <input id="guess" type="text" placeholder="e.g. QH or Queen of Hearts">
+        <button id="practice-submit">Check</button>
+      </div>
+      <p id="practice-result" class="result"></p>
+      <button id="practice-reset" class="secondary">Reset Practice</button>
+    </section>
+
+    <p class="footnote">Tip: short answers like <code>AS</code>, <code>10h</code>, or <code>qd</code> work too.</p>
+  </main>
+
+  <script type="py" src="deck_trainer.py" config='{"packages": []}'></script>
+</body>
+</html>
+
