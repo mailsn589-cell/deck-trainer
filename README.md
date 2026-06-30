@@ -1,8 +1,10 @@
 # Deck Trainer (Python 3 + Web UI)
 
-A flashcard-style deck trainer with two modes:
-- **Learn Mode**: step through cards and reveal each answer.
-- **Practice Mode**: guess the card at a prompted position and get instant feedback.
+A flashcard-style trainer with two study modes using the medical content you provided.
+
+- **Learn Mode**: read the prompt and reveal the answer.
+- **Practice Mode**: choose the correct answer from multiple options.
+- **Deck Selector**: switch between `Abdomen and GI` and `Rectum and Genitourinary`.
 
 The interface is static and can be hosted with **GitHub Pages**.
 
@@ -10,8 +12,8 @@ The interface is static and can be hosted with **GitHub Pages**.
 
 - `index.html` - web interface entry point
 - `styles.css` - UI styles
-- `deck_trainer.py` - browser-side Python handlers (PyScript)
-- `deck_logic.py` - core deck/session logic shared with tests
+- `deck_trainer.py` - browser-side Python handlers and deck data (PyScript)
+- `deck_logic.py` - helper logic and unit-test target
 - `main.py` - local static server runner
 - `tests/test_deck_logic.py` - tiny test harness
 
@@ -29,12 +31,18 @@ Then open `http://127.0.0.1:8000`.
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
+## Add more cards in future
+
+1. Open `deck_trainer.py`.
+2. Add a new deck inside `DECKS` (same `{"front": ..., "back": ...}` format).
+3. Save, commit, and push to GitHub.
+4. GitHub Pages updates automatically after deployment.
+
 ## Host on GitHub Pages
 
 1. Push this repository to GitHub.
 2. In repository settings, open **Pages**.
-3. Set source to the root branch (`main` / `/root`).
-4. Save, then open the provided Pages URL.
+3. Set source to branch `main` and folder `/ (root)`.
+4. Keep **Custom domain** empty unless you own a separate domain.
 
 Because the app is static, no backend hosting is needed.
-

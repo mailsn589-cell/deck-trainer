@@ -11,7 +11,14 @@
 <body>
   <main class="container">
     <h1>Deck Trainer</h1>
-    <p class="lead">Learn a full deck with a simple flashcard-style interface.</p>
+    <p class="lead">Study your provided notes as flashcards in Learn and Practice mode.</p>
+
+    <section class="panel">
+      <h2>Deck</h2>
+      <label for="deck-select">Choose a deck:</label>
+      <select id="deck-select"></select>
+      <p id="deck-status" class="footnote"></p>
+    </section>
 
     <section class="panel">
       <h2>Learn Mode</h2>
@@ -28,15 +35,12 @@
       <h2>Practice Mode</h2>
       <p id="practice-prompt"></p>
       <p id="practice-progress"></p>
-      <div class="guess-row">
-        <input id="guess" type="text" placeholder="e.g. QH or Queen of Hearts">
-        <button id="practice-submit">Check</button>
-      </div>
+      <div id="practice-options" class="option-grid"></div>
       <p id="practice-result" class="result"></p>
       <button id="practice-reset" class="secondary">Reset Practice</button>
     </section>
 
-    <p class="footnote">Tip: short answers like <code>AS</code>, <code>10h</code>, or <code>qd</code> work too.</p>
+    <p class="footnote">Tip: use Learn mode first, then Practice mode for quick recall checks.</p>
   </main>
 
   <script type="py" src="deck_trainer.py" config='{"packages": []}'></script>
