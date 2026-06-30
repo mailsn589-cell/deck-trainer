@@ -1,0 +1,26 @@
+{
+  "name": "Abdomen and GI",
+  "cards": [
+    {"front": "Hematemesis", "back": "Vomiting blood; if exposed to gastric acid it may look like coffee grounds.", "topic": "Symptoms"},
+    {"front": "Dysphagia", "back": "Difficulty swallowing.", "topic": "Symptoms"},
+    {"front": "Odynophagia", "back": "Painful swallowing.", "topic": "Symptoms"},
+    {"front": "Aerophagia", "back": "Excessive flatus from swallowed air.", "topic": "Symptoms"},
+    {"front": "Icterus (jaundice)", "back": "Associated with hepatitis, biliary cirrhosis, or gallstones.", "topic": "Symptoms"},
+    {"front": "Anorexia", "back": "Loss of appetite.", "topic": "Symptoms"},
+    {"front": "Melena", "back": "Dark, tarry stool from upper GI bleeding.", "topic": "Stool findings"},
+    {"front": "Hematochezia", "back": "Bright red blood, often from rectum, anus, or sigmoid.", "topic": "Stool findings"},
+    {"front": "Steatorrhea", "back": "Fatty diarrheal stool.", "topic": "Stool findings"},
+    {"front": "Pale or clay stool", "back": "May indicate impaired biliary production or flow.", "topic": "Stool findings"},
+    {"front": "Umbilicus expected", "back": "Midline and usually inverted.", "topic": "Exam"},
+    {"front": "Umbilicus unexpected", "back": "Redness, swelling, discoloration, or lesions are abnormal.", "topic": "Exam"},
+    {"front": "Symmetry and masses expected", "back": "Abdominal movement should be symmetric with no masses.", "topic": "Exam"},
+    {"front": "Shape unexpected", "back": "Marked distention or severe concavity is abnormal.", "topic": "Exam"},
+    {"front": "Exercise and constipation", "back": "Sedentary lifestyle increases constipation risk; walking 30 minutes daily helps.", "topic": "Prevention"},
+    {"front": "Diet advice for bowel health", "back": "Balanced high-fiber diet and about 8 to 10 glasses of water per day.", "topic": "Prevention"},
+    {"front": "Colorectal screening age", "back": "Routine screening is recommended around age 50, earlier if high risk.", "topic": "Screening"},
+    {"front": "Colonoscopy schedule", "back": "Common interval is every 10 years for average-risk adults.", "topic": "Screening"},
+    {"front": "Probiotics", "back": "Promote beneficial microorganisms in the GI tract.", "topic": "Management"},
+    {"front": "Gastrocolic reflex", "back": "Peristalsis is stimulated after eating.", "topic": "Physiology"}
+  ]
+}
+

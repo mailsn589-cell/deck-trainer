@@ -1,3 +1,4 @@
 # No Python packages are required for local development.
 # The web UI runs in-browser via PyScript CDN assets.
 
+pypdf>=6.0.0

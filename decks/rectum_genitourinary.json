@@ -1,0 +1,26 @@
+{
+  "name": "Rectum and Genitourinary",
+  "cards": [
+    {"front": "Kidney functions", "back": "Maintain fluid and electrolyte balance, support red blood cell production, and filter waste.", "topic": "Anatomy"},
+    {"front": "Ureters", "back": "Transport urine from kidneys to bladder.", "topic": "Anatomy"},
+    {"front": "Bladder role", "back": "Stores urine; urge to void commonly appears near 300 mL.", "topic": "Anatomy"},
+    {"front": "Urethra role", "back": "Passageway for urine; in males it also carries semen.", "topic": "Anatomy"},
+    {"front": "Urinary retention", "back": "Inability to empty the bladder.", "topic": "Urinary symptoms"},
+    {"front": "Urinary hesitancy", "back": "Trouble starting urination.", "topic": "Urinary symptoms"},
+    {"front": "Urinary urgency", "back": "Inability to wait to urinate.", "topic": "Urinary symptoms"},
+    {"front": "Nocturia", "back": "Urinating repeatedly during the night.", "topic": "Urinary symptoms"},
+    {"front": "Stress incontinence", "back": "Leakage with coughing, sneezing, or exertion.", "topic": "Urinary symptoms"},
+    {"front": "Cystocele", "back": "Bladder prolapse into vagina with pressure or stress incontinence.", "topic": "Pelvic findings"},
+    {"front": "Rectocele", "back": "Rectal prolapse into vagina with pressure and possible constipation.", "topic": "Pelvic findings"},
+    {"front": "Goodell sign", "back": "Softening of the cervix around 4 to 6 weeks gestation.", "topic": "Pregnancy signs"},
+    {"front": "Chadwick sign", "back": "Cyanotic vaginal mucosa and cervix around 6 to 8 weeks gestation.", "topic": "Pregnancy signs"},
+    {"front": "Hegar sign", "back": "Softening of uterine isthmus around 4 to 6 weeks and into first trimester.", "topic": "Pregnancy signs"},
+    {"front": "Hydrocele", "back": "Fluid collection around testicle causing usually painless swelling.", "topic": "Male findings"},
+    {"front": "Cryptorchidism", "back": "Undescended testes.", "topic": "Male findings"},
+    {"front": "Phimosis", "back": "Foreskin cannot retract over the glans.", "topic": "Male findings"},
+    {"front": "Paraphimosis", "back": "Retracted foreskin trapped behind glans; this is a medical emergency.", "topic": "Male findings"},
+    {"front": "Priapism", "back": "Painful prolonged erection unrelated to sexual arousal.", "topic": "Male findings"},
+    {"front": "HIV screening guidance", "back": "Screen ages 15 to 75 and during pregnancy; high-risk clients should test annually.", "topic": "Screening"}
+  ]
+}
+

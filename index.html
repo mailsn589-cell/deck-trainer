@@ -12,21 +12,46 @@
   <main class="container">
     <header class="page-header">
       <h1>Medical Deck Trainer</h1>
-      <p class="lead">Study one card at a time, then validate recall in practice mode.</p>
+      <p class="lead">Deck-based learning with spaced repetition and topic filters.</p>
     </header>
 
     <section class="panel deck-panel">
-      <h2>Deck Settings</h2>
-      <div class="deck-controls">
-        <label for="deck-select">Deck</label>
-        <select id="deck-select"></select>
+      <h2>Deck</h2>
+      <div class="grid-two">
+        <div class="field">
+          <label for="deck-select">Deck</label>
+          <select id="deck-select"></select>
+        </div>
+        <div class="field">
+          <label for="topic-filter">Topic Filter</label>
+          <select id="topic-filter"></select>
+        </div>
+      </div>
+      <div class="grid-two">
+        <div class="field">
+          <label for="search-input">Search</label>
+          <input id="search-input" type="text" placeholder="Find term or definition">
+        </div>
+        <div class="field end-row">
+          <button id="clear-filters" class="secondary">Clear Filters</button>
+        </div>
       </div>
       <p id="deck-status" class="muted"></p>
+      <p id="filter-status" class="muted"></p>
+    </section>
+
+    <section class="panel progress-panel">
+      <h2>Progress</h2>
+      <div class="progress-stats">
+        <span id="due-count" class="badge">Due: 0</span>
+        <span id="reviewed-count" class="badge">Reviewed: 0</span>
+        <span id="streak-count" class="badge">Streak: 0</span>
+      </div>
     </section>
 
     <section class="panel learn-panel">
       <div class="panel-head">
-        <h2>Learn Mode</h2>
+        <h2>Learn</h2>
         <p id="learn-side" class="badge"></p>
       </div>
       <p id="learn-position" class="muted"></p>
@@ -36,10 +61,17 @@
         <button id="learn-reveal">Reveal Answer</button>
         <button id="learn-next" class="secondary">Next</button>
       </div>
+      <div class="rate-buttons">
+        <button id="rate-again" class="danger">Again</button>
+        <button id="rate-hard" class="warn">Hard</button>
+        <button id="rate-good">Good</button>
+        <button id="rate-easy" class="success">Easy</button>
+      </div>
+      <button id="reset-progress" class="secondary">Reset Deck Progress</button>
     </section>
 
     <section class="panel practice-panel">
-      <h2>Practice Mode</h2>
+      <h2>Practice</h2>
       <p id="practice-prompt"></p>
       <p id="practice-progress" class="muted"></p>
       <div id="practice-options" class="option-grid"></div>

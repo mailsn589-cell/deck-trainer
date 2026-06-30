@@ -1,0 +1,13 @@
+{
+  "decks": [
+    {
+      "name": "Abdomen and GI",
+      "file": "abdomen_gi.json"
+    },
+    {
+      "name": "Rectum and Genitourinary",
+      "file": "rectum_genitourinary.json"
+    }
+  ]
+}
+

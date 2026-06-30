@@ -1,21 +1,33 @@
 # Medical Deck Trainer (Python 3 + Web UI)
 
-A static flashcard trainer for your medical notes with a true card-by-card workflow.
+A static flashcard trainer for medical notes with deck filtering and spaced repetition.
 
-- **Learn Mode**: one card at a time (question on front, answer on reveal).
-- **Practice Mode**: multiple-choice recall with score tracking.
-- **Deck Selector**: switch between `Abdomen and GI` and `Rectum and Genitourinary`.
+## Features
+
+- **Deck loading**: JSON-first from `decks/manifest.json` with embedded fallback if fetch fails.
+- **Learn mode**: one card at a time, front/back reveal, next/previous navigation.
+- **Spaced repetition**: `Again`, `Hard`, `Good`, `Easy` ratings with localStorage persistence.
+- **Practice mode**: multiple-choice recall with score and progress.
+- **Filters**: search by text and topic dropdown.
 
 ## Project files
 
-- `index.html` - page structure
-- `styles.css` - responsive UI styling
-- `deck_trainer.py` - browser-side study logic (PyScript) with embedded deck data for GitHub Pages reliability
-- `medical_decks.py` - shared deck data for Python-side tests/reference
-- `deck_logic.py` - helper logic + existing unit tests
+- `index.html` - page structure and controls
+- `styles.css` - responsive UI styles
+- `deck_trainer.py` - browser-side logic and fallback decks (PyScript)
+- `flashcard_core.py` - testable scheduler/filter/schema helpers
+- `medical_decks.py` - Python-side deck source used by tests
+- `decks/manifest.json` - runtime deck registry
+- `decks/*.json` - runtime deck files fetched by browser
+- `scripts/pdf_to_deck.py` - local PDF-to-JSON deck converter
 - `main.py` - local static server
-- `tests/test_deck_logic.py` - current unit tests
-- `tests/test_medical_decks.py` - data integrity tests for medical decks
+- `tests/` - unit tests
+
+## Install dependencies
+
+```powershell
+python -m pip install -r requirements.txt
+```
 
 ## Run locally
 
@@ -23,7 +35,7 @@ A static flashcard trainer for your medical notes with a true card-by-card workf
 python main.py
 ```
 
-Then open `http://127.0.0.1:8000`.
+Open `http://127.0.0.1:8000`.
 
 ## Run tests
 
@@ -31,32 +43,32 @@ Then open `http://127.0.0.1:8000`.
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-## Add more cards in future
+## Convert PDF to deck JSON
 
-1. Open `medical_decks.py`.
-2. Add cards under the target deck in this format:
-   - `{"front": "Question or term", "back": "Answer or definition"}`
-3. Save, commit, and push.
-4. Refresh GitHub Pages after deployment.
+```powershell
+python scripts\pdf_to_deck.py --input "Abdomen-1.pdf" --output "decks\abdomen_from_pdf.json" --name "Abdomen From PDF"
+python scripts\pdf_to_deck.py --input "Abdomen-1.pdf" --input "Rectum & Genitourinary-1.pdf" --output "decks\combined.json" --name "Combined Notes"
+```
+
+Then add the new deck file to `decks/manifest.json`.
+
+## Add future PDFs in 4 steps
+
+1. Run `scripts/pdf_to_deck.py` to create a new deck JSON file under `decks/`.
+2. Register the file in `decks/manifest.json`.
+3. Commit and push to GitHub.
+4. Hard refresh the live site.
 
 ## Deploy to GitHub Pages
 
-1. Push to your repository `main` branch.
+1. Push to `main`.
 2. In repository settings, open **Pages**.
 3. Source: `Deploy from a branch`, branch `main`, folder `/ (root)`.
-4. Leave **Custom domain** empty unless you own a separate domain.
+4. Keep **Custom domain** empty unless you own one.
 
-## If the live page still shows old cards
+## Cache refresh note
 
-GitHub Pages and browser caching can delay updates. Do a hard refresh after push:
+After deployment, force reload the page to avoid stale assets:
 
 - Windows: `Ctrl + F5`
 - macOS: `Cmd + Shift + R`
-
-Also check that your latest commit includes changes to `index.html`, `deck_trainer.py`, `styles.css`, and `medical_decks.py`.
-
-## PyScript import note
-
-GitHub Pages runs PyScript in the browser (Pyodide). Local Python module imports can fail there unless explicitly packaged for PyScript.
-To avoid `ModuleNotFoundError` in the browser, `deck_trainer.py` keeps runtime deck data embedded.
-
