@@ -7,7 +7,14 @@
     {
       "name": "Rectum and Genitourinary",
       "file": "rectum_genitourinary.json"
+    },
+    {
+      "name": "Sample PPTX Deck",
+      "file": "sample_from_pptx.json"
+    },
+    {
+      "name": "Sample Text Deck",
+      "file": "sample_from_text.json"
     }
   ]
 }
-

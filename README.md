@@ -9,17 +9,21 @@ A static flashcard trainer for medical notes with deck filtering and spaced repe
 - **Spaced repetition**: `Again`, `Hard`, `Good`, `Easy` ratings with localStorage persistence.
 - **Practice mode**: multiple-choice recall with score and progress.
 - **Filters**: search by text and topic dropdown.
+- **Deck creation tools**: local converters for PDF, PPTX, and raw text.
 
 ## Project files
 
 - `index.html` - page structure and controls
 - `styles.css` - responsive UI styles
 - `deck_trainer.py` - browser-side logic and fallback decks (PyScript)
-- `flashcard_core.py` - testable scheduler/filter/schema helpers
+- `flashcard_core.py` - testable scheduler/filter/schema/helpers
 - `medical_decks.py` - Python-side deck source used by tests
 - `decks/manifest.json` - runtime deck registry
 - `decks/*.json` - runtime deck files fetched by browser
-- `scripts/pdf_to_deck.py` - local PDF-to-JSON deck converter
+- `scripts/pdf_to_deck.py` - local PDF-to-JSON converter
+- `scripts/pptx_to_deck.py` - local PPTX-to-JSON converter
+- `scripts/text_to_deck.py` - local raw-text-to-JSON converter
+- `scripts/register_deck.py` - manifest update helper
 - `main.py` - local static server
 - `tests/` - unit tests
 
@@ -43,21 +47,37 @@ Open `http://127.0.0.1:8000`.
 python -m unittest discover -s tests -p "test_*.py"
 ```
 
-## Convert PDF to deck JSON
+## Create deck from PDF
 
 ```powershell
 python scripts\pdf_to_deck.py --input "Abdomen-1.pdf" --output "decks\abdomen_from_pdf.json" --name "Abdomen From PDF"
-python scripts\pdf_to_deck.py --input "Abdomen-1.pdf" --input "Rectum & Genitourinary-1.pdf" --output "decks\combined.json" --name "Combined Notes"
 ```
 
-Then add the new deck file to `decks/manifest.json`.
+## Create deck from PPTX
 
-## Add future PDFs in 4 steps
+```powershell
+python scripts\pptx_to_deck.py --input "slides.pptx" --output "decks\slides_deck.json" --name "Slides Deck"
+```
 
-1. Run `scripts/pdf_to_deck.py` to create a new deck JSON file under `decks/`.
-2. Register the file in `decks/manifest.json`.
-3. Commit and push to GitHub.
-4. Hard refresh the live site.
+## Create deck from raw text
+
+```powershell
+python scripts\text_to_deck.py --input-file "notes.txt" --output "decks\notes_deck.json" --name "Notes Deck"
+python scripts\text_to_deck.py --input-string "Hematemesis: Vomiting blood" --output "decks\quick_deck.json" --name "Quick Deck"
+```
+
+## Register a new deck in manifest
+
+```powershell
+python scripts\register_deck.py --name "Slides Deck" --file "slides_deck.json"
+```
+
+## Verify new deck appears in app
+
+1. Ensure the JSON file exists under `decks/`.
+2. Ensure `decks/manifest.json` contains the deck file entry.
+3. Run `python main.py` and open the app.
+4. Confirm the deck appears in the `Deck` dropdown.
 
 ## Deploy to GitHub Pages
 

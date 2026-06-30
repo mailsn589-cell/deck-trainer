@@ -1,0 +1,15 @@
+{
+  "name": "Sample PPTX Deck",
+  "cards": [
+    {
+      "front": "Tachycardia",
+      "back": "Fast heart rate",
+      "topic": "Cardiac Terms"
+    },
+    {
+      "front": "Bradycardia",
+      "back": "Slow heart rate",
+      "topic": "Cardiac Terms"
+    }
+  ]
+}

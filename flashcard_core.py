@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from typing import Any
+import re
+from typing import Any, Iterable
 
 SECONDS_PER_DAY = 86400.0
 
@@ -26,6 +27,101 @@ def validate_deck_schema(deck_data: dict[str, Any]) -> tuple[bool, str]:
             return False, f"Card {idx} topic must be a string"
 
     return True, "ok"
+
+
+def normalize_line(line: str) -> str:
+    cleaned = line.replace("\u2022", "-").replace("\u25aa", "-")
+    return re.sub(r"\s+", " ", cleaned).strip()
+
+
+def looks_like_heading(line: str) -> bool:
+    if len(line) > 70:
+        return False
+    if line.endswith(":"):
+        return True
+    words = line.split()
+    return 1 <= len(words) <= 8 and all(w[:1].isupper() for w in words if w[:1].isalpha())
+
+
+def parse_lines_to_cards(lines: Iterable[str], default_topic: str = "General") -> list[dict[str, str]]:
+    cards: list[dict[str, str]] = []
+    current_topic = default_topic
+    current_term = ""
+    current_points: list[str] = []
+
+    def flush_current() -> None:
+        nonlocal current_term, current_points
+        if current_term and current_points:
+            cards.append({"front": current_term, "back": " ".join(current_points), "topic": current_topic})
+        current_term = ""
+        current_points = []
+
+    normalized = [normalize_line(v) for v in lines]
+
+    for line in normalized:
+        if not line or re.fullmatch(r"\d+", line):
+            continue
+
+        qa_match = re.match(r"^([^:]{2,80}):\s+(.+)$", line)
+        if qa_match:
+            flush_current()
+            cards.append(
+                {
+                    "front": qa_match.group(1).strip(),
+                    "back": qa_match.group(2).strip(),
+                    "topic": current_topic,
+                }
+            )
+            continue
+
+        if looks_like_heading(line):
+            flush_current()
+            current_topic = line.rstrip(":")
+            continue
+
+        if line.startswith("-"):
+            bullet_text = line.lstrip("- ").strip()
+            if current_term:
+                current_points.append(bullet_text)
+            else:
+                cards.append({"front": f"{current_topic} note {len(cards) + 1}", "back": bullet_text, "topic": current_topic})
+            continue
+
+        if current_term:
+            current_points.append(line)
+        else:
+            current_term = line
+
+    flush_current()
+
+    if cards:
+        return cards
+
+    compact = [line for line in normalized if line]
+    for idx in range(0, len(compact), 2):
+        front = compact[idx]
+        back = compact[idx + 1] if idx + 1 < len(compact) else "Review this concept"
+        cards.append({"front": front, "back": back, "topic": current_topic})
+
+    return cards
+
+
+def register_manifest_entry(manifest_data: dict[str, Any], deck_name: str, file_name: str) -> dict[str, Any]:
+    result = dict(manifest_data)
+    decks = list(result.get("decks", []))
+
+    updated = False
+    for entry in decks:
+        if entry.get("file") == file_name:
+            entry["name"] = deck_name
+            updated = True
+            break
+
+    if not updated:
+        decks.append({"name": deck_name, "file": file_name})
+
+    result["decks"] = decks
+    return result
 
 
 def default_progress() -> dict[str, float | int | None]:
@@ -98,4 +194,3 @@ def sort_due_first(indices: list[int], cards: list[dict[str, str]], progress_map
         return is_future, due
 
     return sorted(indices, key=sort_key)
-

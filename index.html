@@ -40,6 +40,16 @@
       <p id="filter-status" class="muted"></p>
     </section>
 
+    <section class="panel import-help-panel">
+      <h2>Add Deck (PPTX or Raw Text)</h2>
+      <p class="muted">This app is static, so deck creation happens locally via commands, then you register the new JSON deck.</p>
+      <pre class="cmd-block">python scripts\pptx_to_deck.py --input "slides.pptx" --output "decks\new_deck.json" --name "New Deck"</pre>
+      <pre class="cmd-block">python scripts\text_to_deck.py --input-file "notes.txt" --output "decks\notes_deck.json" --name "Notes Deck"</pre>
+      <pre class="cmd-block">python scripts\text_to_deck.py --input-string "Hematemesis: Vomiting blood" --output "decks\quick.json" --name "Quick Deck"</pre>
+      <pre class="cmd-block">python scripts\register_deck.py --name "New Deck" --file "new_deck.json"</pre>
+      <p class="muted">After running commands, refresh this page. For GitHub Pages, push the new files then hard refresh.</p>
+    </section>
+
     <section class="panel progress-panel">
       <h2>Progress</h2>
       <div class="progress-stats">

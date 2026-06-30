@@ -1,0 +1,15 @@
+{
+  "name": "Sample Text Deck",
+  "cards": [
+    {
+      "front": "Hypoxia",
+      "back": "Low oxygen level",
+      "topic": "General"
+    },
+    {
+      "front": "Hypertension",
+      "back": "Elevated blood pressure",
+      "topic": "- Monitor SpO2"
+    }
+  ]
+}
